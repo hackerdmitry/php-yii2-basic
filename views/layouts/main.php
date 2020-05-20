@@ -37,13 +37,11 @@ AppAsset::register($this);
         ],
     ]);
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav justify-content-end'],
+        'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Начальная страница', 'url' => ['/site/index']],
             Yii::$app->user->isGuest
-                ? (['label' => 'Login', 'url' => ['/site/login']])
+                ? (['label' => 'Вход', 'url' => ['/site/login']])
                 : '<li class="nav-item"><a class="nav-link" href="#" onclick="logout()">Logout (' . Yii::$app->user->identity->username . ')</a></li>'
         ],
     ]);
@@ -70,6 +68,10 @@ AppAsset::register($this);
 </html>
 <?php $this->endPage() ?>
 <script>
+    $(() => {
+        $('#w0-collapse').addClass('justify-content-end')
+    })
+
     function logout() {
         $.post('<?php echo 'http://' . $_SERVER['HTTP_HOST'] . explode('?', $_SERVER['REQUEST_URI'], 2)[0] . '?r=site/logout' ?>')
     }

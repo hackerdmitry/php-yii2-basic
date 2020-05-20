@@ -18,7 +18,7 @@ $this->title = 'My Yii Application';
         max-width: 38px;
     }
 
-    .contact:hover {
+    .contact * {
         cursor: pointer;
     }
 </style>
