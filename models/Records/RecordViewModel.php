@@ -1,8 +1,7 @@
 <?php
 
-namespace app\models;
+namespace app\models\Records;
 
-use Yii;
 use yii\base\Model;
 
 class RecordViewModel extends Model

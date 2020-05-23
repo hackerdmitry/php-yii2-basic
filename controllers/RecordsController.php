@@ -2,8 +2,9 @@
 
 namespace app\controllers;
 
-use app\models\RecordForm;
-use app\models\RecordViewModel;
+use app\models\Records\RecordAddForm;
+use app\models\Records\RecordEditForm;
+use app\models\Records\RecordViewModel;
 use Yii;
 use yii\web\Controller;
 
@@ -24,7 +25,7 @@ class RecordsController extends Controller
             return $this->goHome();
         }
 
-        $model = new RecordForm();
+        $model = new RecordAddForm();
         if ($model->load(Yii::$app->request->post()) && $model->add()) {
             return $this->redirect('index.php?r=records');
         }
@@ -47,6 +48,24 @@ class RecordsController extends Controller
         }
 
         return $this->render('add', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionEdit($id)
+    {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new RecordEditForm();
+        if ($model->load(Yii::$app->request->post())) {
+            $model->edit();
+            return $this->redirect('index.php?r=records');
+        }
+
+        $model = RecordEditForm::get($id);
+        return $this->render('edit', [
             'model' => $model,
         ]);
     }

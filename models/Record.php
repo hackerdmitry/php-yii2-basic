@@ -32,8 +32,13 @@ class Record extends ActiveRecord
         return static::findAll(['user_id' => $user_id]);
     }
 
+    public static function getById($id)
+    {
+        return static::findOne(['id' => $id]);
+    }
+
     public static function remove($id) {
-        $record = static::findOne(['id' => $id]);
+        $record = Record::getById($id);
         $record->delete();
     }
 

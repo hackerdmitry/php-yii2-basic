@@ -3,7 +3,7 @@
 /* @var $this yii\web\View */
 
 use app\models\Record;
-use app\models\RecordViewModel;
+use app\models\Records\RecordViewModel;
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 
@@ -45,7 +45,10 @@ $model = new RecordViewModel();
             echo '
             <tr class="d-flex">
                 <td class="col-2">' . $record->title . '</td>
-                <td class="col-9">' . $record->description . '</td>
+                <td class="col-7">' . $record->description . '</td>
+                <td class="col-2">
+                    <a href="index.php?r=records/edit&id=' . $record->id . '" class="btn btn-primary">Изменить</a>
+                </td>
                 <td class="col-1">
                     ' . Html::hiddenInput('RecordViewModel[id]', $record->id) . '
                     ' . Html::submitButton('&times;', ['class' => 'btn btn-danger', 'onclick' => 'return confirm("Уверен, что хочешь удалить?")']) . '

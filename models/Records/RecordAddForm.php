@@ -1,11 +1,11 @@
 <?php
 
-namespace app\models;
+namespace app\models\Records;
 
 use Yii;
 use yii\base\Model;
 
-class RecordForm extends Model
+class RecordAddForm extends Model
 {
     public $title;
     public $description;
