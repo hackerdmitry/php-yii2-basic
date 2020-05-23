@@ -36,14 +36,20 @@ AppAsset::register($this);
             'class' => 'navbar navbar-expand-lg navbar-dark bg-dark',
         ],
     ]);
+
+    $items = Yii::$app->user->isGuest
+        ? [
+            ['label' => 'Начальная страница', 'url' => ['/site/index']],
+            ['label' => 'Вход', 'url' => ['/site/login']]
+        ]
+        : [
+            ['label' => 'Начальная страница', 'url' => ['/site/index']],
+            ['label' => 'Мои записи', 'url' => ['/site/records']],
+            '<li class="nav-item"><a class="nav-link" href="#" onclick="logout()">Logout (' . Yii::$app->user->identity->username . ')</a></li>'
+        ];
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
-        'items' => [
-            ['label' => 'Начальная страница', 'url' => ['/site/index']],
-            Yii::$app->user->isGuest
-                ? (['label' => 'Вход', 'url' => ['/site/login']])
-                : '<li class="nav-item"><a class="nav-link" href="#" onclick="logout()">Logout (' . Yii::$app->user->identity->username . ')</a></li>'
-        ],
+        'items' => $items,
     ]);
     NavBar::end();
     ?>

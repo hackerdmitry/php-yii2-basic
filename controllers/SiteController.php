@@ -2,9 +2,11 @@
 
 namespace app\controllers;
 
+use app\models\RecordForm;
 use app\models\RegisterForm;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
@@ -104,6 +106,17 @@ class SiteController extends Controller
 
         $model->password = '';
         return $this->render('register', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionRecords() {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new RecordForm();
+        return $this->render('records', [
             'model' => $model,
         ]);
     }
