@@ -76,7 +76,3 @@ class LoginForm extends Model
         return $this->_user;
     }
 }
-
-//VarDumper::dump($this->username, 10, true);
-//VarDumper::dump($this, 10, true);
-//die;

@@ -2,12 +2,10 @@
 
 namespace app\controllers;
 
-use app\models\ContactForm;
 use app\models\RecordForm;
-use app\models\RegisterForm;
+use app\models\RecordViewModel;
 use Yii;
 use yii\web\Controller;
-use yii\web\Response;
 
 class RecordsController extends Controller
 {
@@ -28,7 +26,24 @@ class RecordsController extends Controller
 
         $model = new RecordForm();
         if ($model->load(Yii::$app->request->post()) && $model->add()) {
-            return $this->actionIndex();
+            return $this->redirect('index.php?r=records');
+        }
+
+        return $this->render('add', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionDelete()
+    {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new RecordViewModel();
+        if ($model->load(Yii::$app->request->post())) {
+            $model->delete();
+            return $this->redirect('index.php?r=records');
         }
 
         return $this->render('add', [

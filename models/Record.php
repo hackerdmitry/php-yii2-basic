@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use yii\db\StaleObjectException;
 
 /**
  * Record model
@@ -29,6 +30,11 @@ class Record extends ActiveRecord
     public static function getAllByUserId($user_id)
     {
         return static::findAll(['user_id' => $user_id]);
+    }
+
+    public static function remove($id) {
+        $record = static::findOne(['id' => $id]);
+        $record->delete();
     }
 
     public function rules()
