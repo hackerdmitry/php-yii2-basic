@@ -110,17 +110,6 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionRecords() {
-        if (Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new RecordForm();
-        return $this->render('records', [
-            'model' => $model,
-        ]);
-    }
-
     /**
      * Logout action.
      *

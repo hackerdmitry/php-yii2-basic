@@ -4,27 +4,25 @@ namespace app\models;
 
 use Yii;
 use yii\base\Model;
-use yii\helpers\VarDumper;
 
 class RecordForm extends Model
 {
+    public $title;
+    public $description;
+
     public function rules()
     {
         return [
             ['title', 'required'],
+            ['description', 'default']
         ];
     }
 
-    public function getAll() {
-        $user_id = Yii::$app->user->id;
-        $all_records = Record::getAllByUserId($user_id);
-        $records = [];
-        foreach ($all_records as $record) {
-            $records[] = [
-                "title" => $record->title,
-                "description" => $record->description,
-            ];
-        }
-        return $records;
+    public function add() {
+        $record = new Record();
+        $record->title = $this->title;
+        $record->description = $this->description;
+        $record->user_id = Yii::$app->user->id;
+        return $record->save();
     }
 }

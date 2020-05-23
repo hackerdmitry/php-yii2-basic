@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\db\ActiveRecord;
 
 /**
@@ -19,6 +20,12 @@ class Record extends ActiveRecord
         return 'records';
     }
 
+    public static function getAll()
+    {
+        $user_id = Yii::$app->user->id;
+        return Record::getAllByUserId($user_id);
+    }
+
     public static function getAllByUserId($user_id)
     {
         return static::findAll(['user_id' => $user_id]);
@@ -26,11 +33,6 @@ class Record extends ActiveRecord
 
     public function rules()
     {
-        return [[['username', 'password'], 'required']];
-    }
-
-    public function getId()
-    {
-        return $this->id;
+        return [[['title'], 'required']];
     }
 }
