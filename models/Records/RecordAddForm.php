@@ -2,6 +2,7 @@
 
 namespace app\models\Records;
 
+use app\models\Record;
 use Yii;
 use yii\base\Model;
 

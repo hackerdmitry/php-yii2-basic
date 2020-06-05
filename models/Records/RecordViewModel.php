@@ -2,6 +2,7 @@
 
 namespace app\models\Records;
 
+use app\models\Record;
 use yii\base\Model;
 
 class RecordViewModel extends Model
