@@ -45,6 +45,7 @@ AppAsset::register($this);
         : [
             ['label' => 'Начальная страница', 'url' => ['/site/index']],
             ['label' => 'Мои записи', 'url' => ['/records/index']],
+            ['label' => 'Чатик', 'url' => ['/chat-room/index']],
             '<li class="nav-item"><a class="nav-link" href="#" onclick="logout()">Logout (' . Yii::$app->user->identity->username . ')</a></li>'
         ];
     echo Nav::widget([
